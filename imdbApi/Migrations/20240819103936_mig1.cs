@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -9,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace imdbApi.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class mig1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -56,6 +57,54 @@ namespace imdbApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Categories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "imdbAppStory",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    ImgUrl = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_imdbAppStory", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "imdbSettings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false),
+                    Meta = table.Column<List<string>>(type: "text[]", nullable: false),
+                    Author = table.Column<string>(type: "text", nullable: false),
+                    Facebook = table.Column<string>(type: "text", nullable: false),
+                    Twitter = table.Column<string>(type: "text", nullable: false),
+                    Tiktok = table.Column<string>(type: "text", nullable: false),
+                    Youtube = table.Column<string>(type: "text", nullable: false),
+                    Instagram = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_imdbSettings", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Movies",
                 columns: table => new
                 {
@@ -71,6 +120,21 @@ namespace imdbApi.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Movies", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Rate",
+                columns: table => new
+                {
+                    rate_id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    movie_id = table.Column<int>(type: "integer", nullable: false),
+                    user_id = table.Column<int>(type: "integer", nullable: false),
+                    rate = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rate", x => x.rate_id);
                 });
 
             migrationBuilder.CreateTable(
@@ -180,6 +244,18 @@ namespace imdbApi.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Macera" },
+                    { 2, "Aksiyon" },
+                    { 3, "Korku" },
+                    { 4, "Romantik Komedi" },
+                    { 5, "Bilim Kurgu" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Movies",
                 columns: new[] { "id", "categoryId", "description", "imageUrl", "movieName", "rate", "releaseDate" },
                 values: new object[,]
@@ -248,7 +324,19 @@ namespace imdbApi.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "imdbAppStory");
+
+            migrationBuilder.DropTable(
+                name: "imdbSettings");
+
+            migrationBuilder.DropTable(
                 name: "Movies");
+
+            migrationBuilder.DropTable(
+                name: "Rate");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

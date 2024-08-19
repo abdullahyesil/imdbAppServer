@@ -3191,11 +3191,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PC\\source\\repos\\imdbApi\\imdbApi\\imdbApi.csproj",
+      "projectUniqueName": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\imdbApi.csproj",
       "projectName": "imdbApi",
-      "projectPath": "C:\\Users\\PC\\source\\repos\\imdbApi\\imdbApi\\imdbApi.csproj",
+      "projectPath": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\imdbApi.csproj",
       "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PC\\source\\repos\\imdbApi\\imdbApi\\obj\\",
+      "outputPath": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",

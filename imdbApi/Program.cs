@@ -15,12 +15,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<movieContext>(option => option.UseNpgsql(builder.Configuration["ConnectionStrings:DefaultConnection"]));// DbContext Dosyamýzý burada tanýttýk..
 
-
-builder.Services.AddDbContext<categoryContext>(options =>
-           options.UseNpgsql(builder.Configuration["ConnectionStrings:DefaultConnection"]));
-
-builder.Services.AddDbContext<rateContext>(options =>
-           options.UseNpgsql(builder.Configuration["ConnectionStrings:DefaultConnection"]));
 builder.Services.AddIdentity<appUser, appRole>().AddEntityFrameworkStores<movieContext>();
 
 

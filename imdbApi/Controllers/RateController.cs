@@ -11,10 +11,10 @@ namespace imdbApi.Controllers
     {
 
 
-        private readonly rateContext _rateContext;
+        private readonly movieContext _rateContext;
         private readonly movieContext _movieContext;
 
-        public RateController(rateContext rateContext, movieContext movieContext)
+        public RateController(movieContext rateContext, movieContext movieContext)
         {
             _rateContext = rateContext;
             _movieContext = movieContext;

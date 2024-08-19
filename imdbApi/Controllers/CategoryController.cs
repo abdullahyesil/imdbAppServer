@@ -11,9 +11,9 @@ namespace imdbApi.Controllers
     {
 
 
-        private readonly categoryContext _categoryContext;
+        private readonly movieContext _categoryContext;
         private readonly movieContext _movieContext;
-        public CategoryController(categoryContext categoryContext, movieContext movieContext)
+        public CategoryController(movieContext categoryContext, movieContext movieContext)
         {
 
 
