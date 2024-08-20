@@ -1,4 +1,6 @@
-﻿using imdbApi.Model;
+﻿using imdbApi.DTO;
+using imdbApi.Model;
+using imdbApi.Model.Entity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -13,13 +15,14 @@ namespace imdbApi.Controllers
     public class MovieController : ControllerBase
 
 
-    {   private readonly movieContext _moviecontext;
+    {
+        private readonly movieContext _moviecontext;
 
         public MovieController(movieContext context)
         {
             _moviecontext = context;
         }
-    
+
         [HttpGet]
         public async Task<IActionResult> getMovies()
         {
@@ -31,6 +34,7 @@ namespace imdbApi.Controllers
                         id = m.id,
                         movieName = m.movieName,
                         description = m.description,
+                        MovieActors = m.MovieActors,
                         imageUrl = m.imageUrl,
                         releaseDate = m.releaseDate,
                         rate = m.rate,
@@ -52,57 +56,78 @@ namespace imdbApi.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Veritabanından filmler alınırken bir hata oluştu.");
             }
         }
-    
-        [HttpGet("{id}")]
-        public async Task<IActionResult> getMovieById(int? id)
-        {
 
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetMovieById(int? id)
+        {
             if (id == null)
             {
                 return BadRequest();
-
             }
-               /* var movies= await _moviecontext.Movies.FindAsync(id).Select(m => new Movie
-                {
-                    id= m.id,
-                    movieName = m.movieName,
-                    description= m.description,
-                    categoryId= m.categoryId,
-                    imageUrl= m.imageUrl,  
-                    releaseDate= m.releaseDate,
-                    rate = m.rate
-                }).ToListAsync();*/
 
+            var movie = await _moviecontext.Movies
+                .Where(i => i.id == id)
+                .Include(m => m.MovieActors)
+                .ThenInclude(ma => ma.Actor)
+                .FirstOrDefaultAsync();
 
-            var m = await _moviecontext.Movies.Where(i => i.id == id).Select(m =>
-            new Movie
+            if (movie == null)
             {
-                id = m.id,
-                movieName = m.movieName,
-                description = m.description,
-                categoryId = m.categoryId,
-                imageUrl = m.imageUrl,
-                releaseDate = m.releaseDate,
-                rate = m.rate
-            }).FirstOrDefaultAsync();
+                return NotFound();
+            }
 
+            // Movie entity'sini MovieDto'ya dönüştürme
+            var movieDto = new MovieDto
+            {
+                Id = movie.id,
+                MovieName = movie.movieName,
+                Description = movie.description,
+                releaseDate = movie.releaseDate,
+                ImageUrl = movie.imageUrl,
+                Rate = movie.rate,
+                CategoryId = movie.categoryId,
+                Actors = movie.MovieActors.Select(ma => new ActorDto
+                {
+                    Id = ma.Actor.Id,
+                    Name = ma.Actor.Name
+                }).ToList()
+            };
 
-            if(m == null)  { return NotFound(); }
-            return Ok(m);
-
-
+            return Ok(movieDto);
         }
+
 
         [HttpPost]
-        public async Task<IActionResult> addMovie(Movie model)
+        public async Task<IActionResult> AddMovie(MovieDto model)
         {
-
             // releaseDate'nin Kind'ini UTC olarak ayarlayalım, saat bilgisini sıfırlayalım
             model.releaseDate = DateTime.SpecifyKind(model.releaseDate.Date, DateTimeKind.Utc);
-            _moviecontext.Movies.Add(model);
+
+            // MovieDto'yu Movie entity'sine dönüştürelim
+            var movieEntity = new Movie
+            {
+                movieName = model.MovieName,
+                description = model.Description,
+                releaseDate = model.releaseDate,
+                imageUrl = model.ImageUrl,
+                rate = model.Rate,
+                categoryId = model.CategoryId,
+                MovieActors = model.Actors.Select(ma => new MovieActor
+                {
+                    ActorId = ma.Id
+                    // Burada MovieId ayarlanmıyor çünkü EF tarafından otomatik olarak yapılır
+                }).ToList()
+            };
+
+            // Entity'i veritabanına ekleyelim
+            _moviecontext.Movies.Add(movieEntity);
             await _moviecontext.SaveChangesAsync();
-            return CreatedAtAction(nameof(getMovies), new { Id = model.id }, new { message = "Film başarıyla eklendi " });
+
+            // Yeni eklenen film için oluşturulan id'yi almak için entity'den alıyoruz
+            return CreatedAtAction(nameof(getMovies), new { id = movieEntity.id }, new { message = "Film başarıyla eklendi " });
         }
+
 
         [HttpDelete("delete")]
         public async Task<IActionResult> deleteMovie(int? Id)
@@ -152,6 +177,7 @@ namespace imdbApi.Controllers
             movie.releaseDate = DateTime.SpecifyKind(entity.releaseDate.Date, DateTimeKind.Utc);
             movie.rate = entity.rate;
             movie.categoryId = entity.categoryId;
+            movie.MovieActors = entity.MovieActors;
 
             try
             {

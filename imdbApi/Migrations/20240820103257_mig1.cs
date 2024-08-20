@@ -16,6 +16,19 @@ namespace imdbApi.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Actors",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Actors", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
@@ -89,15 +102,15 @@ namespace imdbApi.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false),
-                    Meta = table.Column<List<string>>(type: "text[]", nullable: false),
-                    Author = table.Column<string>(type: "text", nullable: false),
-                    Facebook = table.Column<string>(type: "text", nullable: false),
-                    Twitter = table.Column<string>(type: "text", nullable: false),
-                    Tiktok = table.Column<string>(type: "text", nullable: false),
-                    Youtube = table.Column<string>(type: "text", nullable: false),
-                    Instagram = table.Column<string>(type: "text", nullable: false)
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    Meta = table.Column<List<string>>(type: "text[]", nullable: true),
+                    Author = table.Column<string>(type: "text", nullable: true),
+                    Facebook = table.Column<string>(type: "text", nullable: true),
+                    Twitter = table.Column<string>(type: "text", nullable: true),
+                    Tiktok = table.Column<string>(type: "text", nullable: true),
+                    Youtube = table.Column<string>(type: "text", nullable: true),
+                    Instagram = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -135,6 +148,20 @@ namespace imdbApi.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Rate", x => x.rate_id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Surveys",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Title = table.Column<string>(type: "text", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Surveys", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -243,6 +270,51 @@ namespace imdbApi.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "MovieActors",
+                columns: table => new
+                {
+                    MovieId = table.Column<int>(type: "integer", nullable: false),
+                    ActorId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MovieActors", x => new { x.MovieId, x.ActorId });
+                    table.ForeignKey(
+                        name: "FK_MovieActors_Actors_ActorId",
+                        column: x => x.ActorId,
+                        principalTable: "Actors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MovieActors_Movies_MovieId",
+                        column: x => x.MovieId,
+                        principalTable: "Movies",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Options",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    SurveyId = table.Column<int>(type: "integer", nullable: false),
+                    OptionText = table.Column<string>(type: "text", nullable: false),
+                    VoteCount = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Options", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Options_Surveys_SurveyId",
+                        column: x => x.SurveyId,
+                        principalTable: "Surveys",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "Name" },
@@ -263,9 +335,14 @@ namespace imdbApi.Migrations
                     { 1, 5, "Over the course of several years, two convicts form a friendship, seeking consolation and, eventually, redemption through basic compassion.", "https://i.imgur.com/MVLnB1j.jpg", "Esaretin Bedeli", 4.7999999999999998, new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc) },
                     { 2, 1, "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.", "https://i.imgur.com/ISX6YEd.jpeg", "Baba", 5.0, new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc) },
                     { 3, 2, "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.", "https://i.imgur.com/s96o1bI.jpeg", "Kara Şövalye", 4.0, new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc) },
-                    { 4, 4, "Gandalf and Aragorn lead the World of Men against Saurons army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.", "https://i.imgur.com/XVa7aaQ.jpeg", "Yüzüklerin Efendisi= Kralın Dönüşü", 4.4000000000000004, new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc) },
+                    { 4, 4, "Gandalf and Aragorn lead the World of Men against Saurons army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.", "https://i.imgur.com/XVa7aaQ.jpeg", "Yüzüklerin Efendisi: Kralın Dönüşü", 4.4000000000000004, new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc) },
                     { 5, 5, "In German - occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.", "https://i.imgur.com/WXEcXuC.jpeg", "Schindlerin Listesi", 4.5, new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc) }
                 });
+
+            migrationBuilder.InsertData(
+                table: "imdbSettings",
+                columns: new[] { "Id", "Author", "Description", "Facebook", "Instagram", "Meta", "Name", "Tiktok", "Twitter", "Youtube" },
+                values: new object[] { 1, "Abdullah Yeşil", "Açıklama Satırı", null, null, new List<string> { "MovieApp", "imdbApp" }, "Movie App", null, null, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -303,6 +380,16 @@ namespace imdbApi.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MovieActors_ActorId",
+                table: "MovieActors",
+                column: "ActorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Options_SurveyId",
+                table: "Options",
+                column: "SurveyId");
         }
 
         /// <inheritdoc />
@@ -333,7 +420,10 @@ namespace imdbApi.Migrations
                 name: "imdbSettings");
 
             migrationBuilder.DropTable(
-                name: "Movies");
+                name: "MovieActors");
+
+            migrationBuilder.DropTable(
+                name: "Options");
 
             migrationBuilder.DropTable(
                 name: "Rate");
@@ -343,6 +433,15 @@ namespace imdbApi.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Actors");
+
+            migrationBuilder.DropTable(
+                name: "Movies");
+
+            migrationBuilder.DropTable(
+                name: "Surveys");
         }
     }
 }

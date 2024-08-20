@@ -3,24 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\model\\imdbsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\model\\imdbsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\controllers\\actorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\controllers\\actorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\model\\imdbappstory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\model\\imdbappstory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\model\\entity\\actors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\model\\entity\\actors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\model\\entity\\surveys\\option.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\model\\entity\\surveys\\option.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\dto\\actordto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\dto\\actordto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\model\\moviecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\model\\moviecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\controllers\\ratecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\controllers\\ratecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\controllers\\moviecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\controllers\\moviecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,44 +35,44 @@
       "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\dto\\moviedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\dto\\moviedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\dto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\dto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\dto\\userviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\dto\\userviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\model\\movie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\model\\movie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\imdbapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\imdbapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\controllers\\moviecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\controllers\\moviecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\model\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\model\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\model\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\model\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\model\\imdbappstory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\model\\imdbappstory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\model\\imdbsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\model\\imdbsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\model\\approle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\model\\approle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\model\\rate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\model\\rate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\model\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\model\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|c:\\users\\pc\\documents\\github\\imdbappserver\\imdbapi\\model\\entity\\surveys\\survey.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0BAB23C-8F1F-495A-B804-E61816AD152C}|imdbApi\\imdbApi.csproj|solutionrelative:imdbapi\\model\\entity\\surveys\\survey.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -78,7 +82,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -90,176 +94,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Program.cs",
-              "RelativeDocumentMoniker": "imdbApi\\Program.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Program.cs",
-              "RelativeToolTip": "imdbApi\\Program.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAgwBYAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T10:29:59.246Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "appsettings.Development.json",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\appsettings.Development.json",
-              "RelativeDocumentMoniker": "imdbApi\\appsettings.Development.json",
-              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\appsettings.Development.json",
-              "RelativeToolTip": "imdbApi\\appsettings.Development.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-08-19T10:23:02.161Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\appsettings.json",
-              "RelativeDocumentMoniker": "imdbApi\\appsettings.json",
-              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\appsettings.json",
-              "RelativeToolTip": "imdbApi\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-08-19T10:22:54.282Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "movieContext.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\movieContext.cs",
-              "RelativeDocumentMoniker": "imdbApi\\Model\\movieContext.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\movieContext.cs",
-              "RelativeToolTip": "imdbApi\\Model\\movieContext.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAQwB0AAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T08:07:36.541Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "imdbSettings.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\imdbSettings.cs",
-              "RelativeDocumentMoniker": "imdbApi\\Model\\imdbSettings.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\imdbSettings.cs",
-              "RelativeToolTip": "imdbApi\\Model\\imdbSettings.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAuAAAA",
+              "Title": "ActorController.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Controllers\\ActorController.cs",
+              "RelativeDocumentMoniker": "imdbApi\\Controllers\\ActorController.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Controllers\\ActorController.cs",
+              "RelativeToolTip": "imdbApi\\Controllers\\ActorController.cs",
+              "ViewState": "AQIAACEAAAAAAAAAAAAcwC0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T08:07:26.99Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Movie.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\Movie.cs",
-              "RelativeDocumentMoniker": "imdbApi\\Model\\Movie.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\Movie.cs",
-              "RelativeToolTip": "imdbApi\\Model\\Movie.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T08:07:27.588Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ImdbAppStory.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\ImdbAppStory.cs",
-              "RelativeDocumentMoniker": "imdbApi\\Model\\ImdbAppStory.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\ImdbAppStory.cs",
-              "RelativeToolTip": "imdbApi\\Model\\ImdbAppStory.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T08:15:43.042Z",
+              "WhenOpened": "2024-08-20T10:29:56.864Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "AdminController.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Controllers\\AdminController.cs",
-              "RelativeDocumentMoniker": "imdbApi\\Controllers\\AdminController.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Controllers\\AdminController.cs",
-              "RelativeToolTip": "imdbApi\\Controllers\\AdminController.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAwAAAAdAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T08:19:00.931Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CategoryController.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Controllers\\CategoryController.cs",
-              "RelativeDocumentMoniker": "imdbApi\\Controllers\\CategoryController.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Controllers\\CategoryController.cs",
-              "RelativeToolTip": "imdbApi\\Controllers\\CategoryController.cs",
-              "ViewState": "AQIAAIwAAAAAAAAAAAAAAA8AAAAuAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T07:58:46.169Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "RateController.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Controllers\\RateController.cs",
-              "RelativeDocumentMoniker": "imdbApi\\Controllers\\RateController.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Controllers\\RateController.cs",
-              "RelativeToolTip": "imdbApi\\Controllers\\RateController.cs",
-              "ViewState": "AQIAAAEAAAAAAAAAAAAQwBAAAAAqAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T08:17:55.327Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "imdbApi",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\imdbApi.csproj",
-              "RelativeDocumentMoniker": "imdbApi\\imdbApi.csproj",
-              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\imdbApi.csproj",
-              "RelativeToolTip": "imdbApi\\imdbApi.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-08-19T10:22:43.527Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
               "Title": "MovieController.cs",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Controllers\\MovieController.cs",
               "RelativeDocumentMoniker": "imdbApi\\Controllers\\MovieController.cs",
               "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Controllers\\MovieController.cs",
               "RelativeToolTip": "imdbApi\\Controllers\\MovieController.cs",
-              "ViewState": "AQIAAFwAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAFsAAAAAAAAAAAAqwFUAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T07:58:39.811Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "imdbApi\\Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Controllers\\UserController.cs",
-              "RelativeToolTip": "imdbApi\\Controllers\\UserController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T08:17:54.364Z",
+              "WhenOpened": "2024-08-20T10:15:23.64Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 13,
+              "Title": "ImdbAppStory.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\ImdbAppStory.cs",
+              "RelativeDocumentMoniker": "imdbApi\\Model\\ImdbAppStory.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\ImdbAppStory.cs",
+              "RelativeToolTip": "imdbApi\\Model\\ImdbAppStory.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T07:38:23.15Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "Category.cs",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\Category.cs",
               "RelativeDocumentMoniker": "imdbApi\\Model\\Category.cs",
@@ -267,20 +141,150 @@
               "RelativeToolTip": "imdbApi\\Model\\Category.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T08:13:11.873Z",
+              "WhenOpened": "2024-08-20T07:38:42.964Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Movie.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\Movie.cs",
+              "RelativeDocumentMoniker": "imdbApi\\Model\\Movie.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\Movie.cs",
+              "RelativeToolTip": "imdbApi\\Model\\Movie.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T07:38:37.009Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "movieContext.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\movieContext.cs",
+              "RelativeDocumentMoniker": "imdbApi\\Model\\movieContext.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\movieContext.cs",
+              "RelativeToolTip": "imdbApi\\Model\\movieContext.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAxwBsAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T07:38:56.459Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CategoryController.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Controllers\\CategoryController.cs",
+              "RelativeDocumentMoniker": "imdbApi\\Controllers\\CategoryController.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Controllers\\CategoryController.cs",
+              "RelativeToolTip": "imdbApi\\Controllers\\CategoryController.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAgwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T10:15:23.16Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "UserDTO.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\DTO\\UserDTO.cs",
+              "RelativeDocumentMoniker": "imdbApi\\DTO\\UserDTO.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\DTO\\UserDTO.cs",
+              "RelativeToolTip": "imdbApi\\DTO\\UserDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T10:19:45.12Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ActorDTO.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\DTO\\ActorDTO.cs",
+              "RelativeDocumentMoniker": "imdbApi\\DTO\\ActorDTO.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\DTO\\ActorDTO.cs",
+              "RelativeToolTip": "imdbApi\\DTO\\ActorDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T10:16:22.208Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Option.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\Entity\\Surveys\\Option.cs",
+              "RelativeDocumentMoniker": "imdbApi\\Model\\Entity\\Surveys\\Option.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\Entity\\Surveys\\Option.cs",
+              "RelativeToolTip": "imdbApi\\Model\\Entity\\Surveys\\Option.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAIAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T07:46:23.554Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Actors.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\Entity\\Actors.cs",
+              "RelativeDocumentMoniker": "imdbApi\\Model\\Entity\\Actors.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\Entity\\Actors.cs",
+              "RelativeToolTip": "imdbApi\\Model\\Entity\\Actors.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T10:31:13.863Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MovieDTO.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\DTO\\MovieDTO.cs",
+              "RelativeDocumentMoniker": "imdbApi\\DTO\\MovieDTO.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\DTO\\MovieDTO.cs",
+              "RelativeToolTip": "imdbApi\\DTO\\MovieDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T10:16:16.073Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "UserViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\DTO\\UserViewModel.cs",
+              "RelativeDocumentMoniker": "imdbApi\\DTO\\UserViewModel.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\DTO\\UserViewModel.cs",
+              "RelativeToolTip": "imdbApi\\DTO\\UserViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T10:17:20.321Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "imdbApi\\Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "imdbApi\\Controllers\\AdminController.cs",
+              "ViewState": "AQIAAHMAAAAAAAAAAAAkwHoAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T07:48:08.66Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 14,
-              "Title": "appUser.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\appUser.cs",
-              "RelativeDocumentMoniker": "imdbApi\\Model\\appUser.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\appUser.cs",
-              "RelativeToolTip": "imdbApi\\Model\\appUser.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "imdbSettings.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\imdbSettings.cs",
+              "RelativeDocumentMoniker": "imdbApi\\Model\\imdbSettings.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\imdbSettings.cs",
+              "RelativeToolTip": "imdbApi\\Model\\imdbSettings.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T08:14:15.425Z",
+              "WhenOpened": "2024-08-20T07:38:29.645Z",
               "EditorCaption": ""
             },
             {
@@ -293,21 +297,33 @@
               "RelativeToolTip": "imdbApi\\Model\\appRole.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T08:14:14.463Z",
+              "WhenOpened": "2024-08-20T07:38:43.539Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 16,
-              "Title": "Rate.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\Rate.cs",
-              "RelativeDocumentMoniker": "imdbApi\\Model\\Rate.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\Rate.cs",
-              "RelativeToolTip": "imdbApi\\Model\\Rate.cs",
+              "Title": "appUser.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\appUser.cs",
+              "RelativeDocumentMoniker": "imdbApi\\Model\\appUser.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\appUser.cs",
+              "RelativeToolTip": "imdbApi\\Model\\appUser.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-19T08:12:55Z",
+              "WhenOpened": "2024-08-20T07:38:44.261Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Survey.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\Entity\\Surveys\\Survey.cs",
+              "RelativeDocumentMoniker": "imdbApi\\Model\\Entity\\Surveys\\Survey.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\imdbAppServer\\imdbApi\\Model\\Entity\\Surveys\\Survey.cs",
+              "RelativeToolTip": "imdbApi\\Model\\Entity\\Surveys\\Survey.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T07:45:04.056Z"
             }
           ]
         }

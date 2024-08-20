@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("imdbApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+62e1e0d241ce9bebf1514af55ca345b77650f4f5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0e23752791609e92d257cdd4b57efd77e0adf3c2")]
 [assembly: System.Reflection.AssemblyProductAttribute("imdbApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("imdbApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

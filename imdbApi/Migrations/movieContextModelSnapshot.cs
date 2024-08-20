@@ -170,6 +170,83 @@ namespace imdbApi.Migrations
                         });
                 });
 
+            modelBuilder.Entity("imdbApi.Model.Entity.Actors", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Actors");
+                });
+
+            modelBuilder.Entity("imdbApi.Model.Entity.MovieActor", b =>
+                {
+                    b.Property<int>("MovieId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ActorId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("MovieId", "ActorId");
+
+                    b.HasIndex("ActorId");
+
+                    b.ToTable("MovieActors");
+                });
+
+            modelBuilder.Entity("imdbApi.Model.Entity.Surveys.Option", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("OptionText")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("SurveyId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("VoteCount")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SurveyId");
+
+                    b.ToTable("Options");
+                });
+
+            modelBuilder.Entity("imdbApi.Model.Entity.Surveys.Survey", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Surveys");
+                });
+
             modelBuilder.Entity("imdbApi.Model.ImdbAppStory", b =>
                 {
                     b.Property<int>("Id")
@@ -261,7 +338,7 @@ namespace imdbApi.Migrations
                             categoryId = 4,
                             description = "Gandalf and Aragorn lead the World of Men against Saurons army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.",
                             imageUrl = "https://i.imgur.com/XVa7aaQ.jpeg",
-                            movieName = "Yüzüklerin Efendisi= Kralın Dönüşü",
+                            movieName = "Yüzüklerin Efendisi: Kralın Dönüşü",
                             rate = 4.4000000000000004,
                             releaseDate = new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
@@ -404,44 +481,45 @@ namespace imdbApi.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Author")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Facebook")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Instagram")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<List<string>>("Meta")
-                        .IsRequired()
                         .HasColumnType("text[]");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Tiktok")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Twitter")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Youtube")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.ToTable("imdbSettings");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Author = "Abdullah Yeşil",
+                            Description = "Açıklama Satırı",
+                            Meta = new List<string> { "MovieApp", "imdbApp" },
+                            Name = "Movie App"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -493,6 +571,51 @@ namespace imdbApi.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("imdbApi.Model.Entity.MovieActor", b =>
+                {
+                    b.HasOne("imdbApi.Model.Entity.Actors", "Actor")
+                        .WithMany("MovieActors")
+                        .HasForeignKey("ActorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("imdbApi.Model.Movie", "Movie")
+                        .WithMany("MovieActors")
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Actor");
+
+                    b.Navigation("Movie");
+                });
+
+            modelBuilder.Entity("imdbApi.Model.Entity.Surveys.Option", b =>
+                {
+                    b.HasOne("imdbApi.Model.Entity.Surveys.Survey", "Survey")
+                        .WithMany("Options")
+                        .HasForeignKey("SurveyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Survey");
+                });
+
+            modelBuilder.Entity("imdbApi.Model.Entity.Actors", b =>
+                {
+                    b.Navigation("MovieActors");
+                });
+
+            modelBuilder.Entity("imdbApi.Model.Entity.Surveys.Survey", b =>
+                {
+                    b.Navigation("Options");
+                });
+
+            modelBuilder.Entity("imdbApi.Model.Movie", b =>
+                {
+                    b.Navigation("MovieActors");
                 });
 #pragma warning restore 612, 618
         }
