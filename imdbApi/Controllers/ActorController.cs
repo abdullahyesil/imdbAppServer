@@ -22,6 +22,7 @@ namespace imdbApi.Controllers
         [HttpGet("getActors")]
         public async Task<IActionResult> GetActors([FromQuery] int? page, int? size, string? value)
         {
+            var totalCount= 0;
             List<ActorDto> actors;
             if (!string.IsNullOrEmpty(value))
             {
@@ -33,6 +34,11 @@ namespace imdbApi.Controllers
                     .Take(size ?? 10) // Varsayılan olarak bir sayfa boyutu belirleyin
                     .Select(r => new ActorDto { Id = r.Id, Name = r.Name })
                     .ToListAsync();
+
+                 totalCount = await _movieContext.Actors
+                    .Where(i => i.Name.ToLower().Contains(normalizedValue)).CountAsync();
+
+
             }
             else
             {
@@ -41,9 +47,10 @@ namespace imdbApi.Controllers
                     .Take(size ?? 10) // Varsayılan olarak bir sayfa boyutu belirleyin
                     .Select(r => new ActorDto { Id = r.Id, Name = r.Name })
                     .ToListAsync();
+                 totalCount = await _movieContext.Actors.CountAsync();
             }
 
-            var totalCount = await _movieContext.Actors.CountAsync();
+          
 
             var result = new
             {
@@ -69,7 +76,7 @@ namespace imdbApi.Controllers
 
             if (existingActor != null)
             {
-                return Conflict("An actor with the same name already exists.");
+                return Conflict(new { message = "An actor with the same name already exists." });
             }
 
             var actor = new Actors
@@ -85,22 +92,22 @@ namespace imdbApi.Controllers
             catch (DbUpdateException ex)
             {
                 // Hata yönetimi için loglama yapılabilir veya hata mesajı dönebilirsiniz
-                return StatusCode(500, "An error occurred while saving the actor. Please try again.");
+                return StatusCode(500,new { message = "An error occurred while saving the actor. Please try again." });
             }
 
             // Eklenen aktörün ID'si ile birlikte yanıt döneriz
             return CreatedAtAction(nameof(GetActors), new { id = actor.Id }, actorDto);
         }
 
-        [HttpPut("updateActor/{id}")]
-        public async Task<IActionResult> UpdateActor(int id, [FromBody] ActorDto actorDto)
+        [HttpPut("updateActor")]
+        public async Task<IActionResult> UpdateActor([FromBody] ActorDto actorDto)
         {
-            if (actorDto == null || id != actorDto.Id)
+            if (actorDto == null)
             {
                 return BadRequest("Invalid data.");
             }
 
-            var actor = await _movieContext.Actors.FindAsync(id);
+            var actor = await _movieContext.Actors.FindAsync(actorDto.Id);
             if (actor == null)
             {
                 return NotFound("Actor not found.");
@@ -112,6 +119,31 @@ namespace imdbApi.Controllers
             await _movieContext.SaveChangesAsync();
 
             return NoContent();
+        }
+
+
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> deleteActor([FromRoute]int id)
+        {
+            var actor = await _movieContext.Actors.FirstOrDefaultAsync(i=> i.Id == id);
+
+            if (actor != null)
+            {
+                 _movieContext.Actors.Remove(actor);
+                try
+                {
+                  _movieContext.SaveChanges();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
+                return Ok("Başarıyla silindi");
+            }
+            return NotFound("İd ile kullanıcı mevcut değil");
+
         }
 
     }
