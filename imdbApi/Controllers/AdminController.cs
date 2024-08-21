@@ -1,4 +1,5 @@
-﻿using imdbApi.Model;
+﻿using imdbApi.DTO.SurveysDTO;
+using imdbApi.Model;
 using imdbApi.Model.Entity.Surveys;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -82,28 +83,61 @@ namespace imdbApi.Controllers
         }
 
 
-        //Survey
         [HttpGet("Survey/{id}")]
-        public async Task<ActionResult<Survey>> GetSurvey(int id)
+        public async Task<ActionResult<SurveyDTO>> GetSurvey(int id)
         {
-            var survey = await _settingsContext.Surveys.Include(s => s.Options).FirstOrDefaultAsync(s => s.Id == id);
+            var survey = await _settingsContext.Surveys
+                .Include(s => s.Options)
+                .FirstOrDefaultAsync(s => s.Id == id);
 
             if (survey == null)
             {
                 return NotFound();
             }
 
-            return Ok(survey);
+            var surveyDto = new SurveyDTO
+            {
+                Id = survey.Id,
+                Title = survey.Title,
+                CreatedDate = survey.CreatedDate,
+                Options = survey.Options.Select(o => new OptionDTO
+                {
+                    Id = o.Id,
+                    SurveyId = o.SurveyId,
+                    OptionText = o.OptionText,
+                    VoteCount = o.VoteCount
+                }).ToList()
+            };
+
+            return Ok(surveyDto);
         }
 
+
         [HttpPost("Survey/")]
-        public async Task<ActionResult<Survey>> CreateSurvey(Survey survey)
+        public async Task<ActionResult<SurveyDTO>> CreateSurvey(SurveyDTO surveyDto)
         {
+            var survey = new Survey
+            {
+                Title = surveyDto.Title,
+                CreatedDate = surveyDto.CreatedDate,
+                Options = surveyDto.Options.Select(o => new Option
+                {
+                    SurveyId = o.SurveyId,
+                    OptionText = o.OptionText,
+                    VoteCount = o.VoteCount
+                }).ToList()
+            };
+
             _settingsContext.Surveys.Add(survey);
             await _settingsContext.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetSurvey), new { id = survey.Id }, survey);
+            // Survey oluşturulduktan sonra DTO'yu geri döndürmek için survey nesnesini surveyDto'ya dönüştürüyoruz
+            surveyDto.Id = survey.Id;
+            surveyDto.Options.ForEach(o => o.Id = survey.Options.First(opt => opt.OptionText == o.OptionText).Id);
+
+            return CreatedAtAction(nameof(GetSurvey), new { id = surveyDto.Id }, surveyDto);
         }
+
 
         [HttpPost("Survey/vote/{optionId}")]
         public async Task<IActionResult> Vote(int optionId)
@@ -120,25 +154,31 @@ namespace imdbApi.Controllers
             return NoContent();
         }
 
+
         [HttpGet("Survey/{id}/results")]
-        public async Task<ActionResult> GetSurveyResults(int id)
+        public async Task<ActionResult<IEnumerable<OptionResultDTO>>> GetSurveyResults(int id)
         {
-            var survey = await _settingsContext.Surveys.Include(s => s.Options).FirstOrDefaultAsync(s => s.Id == id);
+            var survey = await _settingsContext.Surveys
+                .Include(s => s.Options)
+                .FirstOrDefaultAsync(s => s.Id == id);
+
             if (survey == null)
             {
                 return NotFound();
             }
 
             var totalVotes = survey.Options.Sum(o => o.VoteCount);
-            var results = survey.Options.Select(o => new
+
+            var results = survey.Options.Select(o => new OptionResultDTO
             {
-                o.OptionText,
-                o.VoteCount,
+                OptionText = o.OptionText,
+                VoteCount = o.VoteCount,
                 VotePercentage = totalVotes == 0 ? 0 : (o.VoteCount * 100.0 / totalVotes)
-            });
+            }).ToList();
 
             return Ok(results);
         }
+
 
         //Survey bİTİŞ
     }
