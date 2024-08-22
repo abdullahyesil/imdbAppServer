@@ -26,6 +26,7 @@ namespace imdbApi.Model
         public DbSet<Option> Options { get; set; }
         public DbSet<MovieActor> MovieActors { get; set; }
         public DbSet<Actors> Actors { get; set; }
+        public DbSet<homePageSettings> homePageSettings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -64,7 +65,29 @@ namespace imdbApi.Model
             });
                 builder.Entity<Movie>().HasData(new Movie() { id = 5, movieName = "Schindlerin Listesi", description = "In German - occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.", imageUrl = "https://i.imgur.com/WXEcXuC.jpeg", releaseDate = new DateTime(1999, 12, 4, 0, 0, 0, DateTimeKind.Utc), rate = 4.5 , categoryId = 5 });
 
-            builder.Entity<imdbSettings>().HasData(new imdbSettings() { Id= 1, Name = "Movie App", Description = "Açıklama Satırı" , Author = "Abdullah Yeşil", Meta = ["MovieApp", "imdbApp"] });
+            builder.Entity<imdbSettings>().HasData(new imdbSettings()
+            {
+                Id = 1,
+                Name = "Movie App",
+                Description = "Açıklama Satırı",
+                Author = "Abdullah Yeşil",
+                Meta = new List<string> { "MovieApp", "imdbApp" }
+            });
+
+
+            builder.Entity<homePageSettings>().HasData(new homePageSettings()
+            {
+                Id = 1,
+                h1Name = "",
+                carousel = true,
+                carouselBaslik = "Popüler Filmler",
+                carouselId = new List<int> { 2, 1 },
+                surveys = true,
+                surveyId = 2,
+                imdbAppStory = true,
+                imdbAppStoryId = new List<int> { 1, 2 }
+            });
+
         }
 
     }

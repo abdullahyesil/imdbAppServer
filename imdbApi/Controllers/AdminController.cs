@@ -22,7 +22,7 @@ namespace imdbApi.Controllers
         public async Task<IActionResult> get()
         {
             var model = await _settingsContext.imdbSettings.Select(r => new imdbSettings
-            { 
+            {
                 Id = r.Id,
                 Name = r.Name,
                 Meta = r.Meta,
@@ -41,14 +41,14 @@ namespace imdbApi.Controllers
         [HttpPut("Settings")]
         public async Task<IActionResult> settingsPut(imdbSettings imdbSettings)
         {
-        var model = await _settingsContext.imdbSettings.FirstOrDefaultAsync(i=> i.Id == imdbSettings.Id);
+            var model = await _settingsContext.imdbSettings.FirstOrDefaultAsync(i => i.Id == imdbSettings.Id);
 
             if (model != null)
             {
                 model.Name = imdbSettings.Name;
                 model.Author = imdbSettings.Author;
                 model.Description = imdbSettings.Description;
-                model.Meta= imdbSettings.Meta;
+                model.Meta = imdbSettings.Meta;
                 model.Instagram = imdbSettings.Instagram;
                 model.Facebook = imdbSettings.Facebook;
                 model.Youtube = imdbSettings.Youtube;
@@ -67,9 +67,9 @@ namespace imdbApi.Controllers
                 }
             }
 
-       
-            else { return BadRequest("Geçersiz istek");  }
-            
+
+            else { return BadRequest("Geçersiz istek"); }
+
         }
         [HttpGet("Home")]
         public async Task<IActionResult> getHomePage()
@@ -82,6 +82,24 @@ namespace imdbApi.Controllers
             return Ok();
         }
 
+        //Surveys
+
+        [HttpGet("Survey")]
+        public async Task<ActionResult<List<SurveyDTO>>> GetSurveys()
+        {
+            var surveys = await _settingsContext.Surveys
+                .OrderByDescending(s => s.CreatedDate)  // En son eklenen anketler önce gelecek şekilde sıralama
+                .ToListAsync();
+
+            var surveyDTOs = surveys.Select(s => new SurveyDTO
+            {
+                Id = s.Id,
+                Title = s.Title,
+                CreatedDate = s.CreatedDate
+            }).ToList();
+
+            return Ok(surveyDTOs);
+        }
 
         [HttpGet("Survey/{id}")]
         public async Task<ActionResult<SurveyDTO>> GetSurvey(int id)
@@ -139,8 +157,8 @@ namespace imdbApi.Controllers
         }
 
 
-        [HttpPost("Survey/vote/{optionId}")]
-        public async Task<IActionResult> Vote(int optionId)
+        [HttpPost("Survey/vote/")]
+        public async Task<IActionResult> Vote([FromBody]int optionId)
         {
             var option = await _settingsContext.Options.FindAsync(optionId);
             if (option == null)
@@ -178,9 +196,100 @@ namespace imdbApi.Controllers
 
             return Ok(results);
         }
-
-
         //Survey bİTİŞ
+
+
+        //homePages
+
+        [HttpPut("HomeSettings")]
+        public async Task<IActionResult> putSettings(homePageSettings settings)
+        {
+            var model = await _settingsContext.homePageSettings.FirstOrDefaultAsync(s => s.Id == settings.Id);
+                if(model != null)
+           {
+                model.h1Name = settings.h1Name;
+                model.imdbAppStory = settings.imdbAppStory;
+                model.imdbAppStoryId = settings.imdbAppStoryId;
+                model.surveys = settings.surveys;
+                model.surveyId = settings.surveyId;
+                model.carousel = settings.carousel;
+                model.carouselId = settings.carouselId;
+                model.carouselBaslik = settings.carouselBaslik;
+
+                try
+                {
+                    await _settingsContext.SaveChangesAsync();
+                    return Ok(model);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
+
+                return BadRequest("Bulunamadı");
+
+        }
+
+        [HttpGet("HomeSettings")]
+        public async Task<IActionResult> getHomeSettings()
+        {
+            var model = await _settingsContext.homePageSettings.FirstOrDefaultAsync();
+            return Ok(model);
+
+        }
+
+
+        //homeSettingsBitiş
+
+        //Story
+
+        [HttpPost("Story")]
+        public async Task<IActionResult> addStory(ImdbAppStory model)
+        {
+            try
+            {
+                await _settingsContext.imdbAppStory.AddAsync(model);
+                _settingsContext.SaveChanges();
+                return Created();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpGet("Story")]
+        public async Task<IActionResult> getStory()
+        {
+            var model = await _settingsContext.imdbAppStory.ToListAsync();
+            return Ok(model);
+        }
+
+        [HttpPost("StoryIds")]
+        public async Task<IActionResult> GetStoryIds([FromBody] List<int> ids)
+        {
+            if (ids == null || !ids.Any())
+            {
+                return BadRequest("ID listesi boş olamaz.");
+            }
+
+            // Veritabanında ID listesi ile eşleşen Story'leri al
+            var stories = await _settingsContext.imdbAppStory
+                .Where(story => ids.Contains(story.Id))
+                .ToListAsync();
+
+            if (stories == null || !stories.Any())
+            {
+                return NotFound("Belirtilen ID'lerle eşleşen hikaye bulunamadı.");
+            }
+
+            return Ok(stories);
+        }
+
+
     }
 
 

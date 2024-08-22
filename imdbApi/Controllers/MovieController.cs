@@ -4,6 +4,7 @@ using imdbApi.Model.Entity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata.Ecma335;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -24,37 +25,48 @@ namespace imdbApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> getMovies()
+        public async Task<IActionResult> getMovies([FromQuery] int? page, int? size, string? value)
         {
-            try
+
+            var totalCount = 0;
+            List<MovieDto> Movies;
+            if (!string.IsNullOrEmpty(value))
             {
-                var movies = await _moviecontext.Movies
-                    .Select(m => new Movie
-                    {
-                        id = m.id,
-                        movieName = m.movieName,
-                        description = m.description,
-                        MovieActors = m.MovieActors,
-                        imageUrl = m.imageUrl,
-                        releaseDate = m.releaseDate,
-                        rate = m.rate,
-                        categoryId = m.categoryId,
-                    })
+                var normalizedValue = value.ToLower(); // Arama terimini küçük harfe çevirin
+
+                Movies = await _moviecontext.Movies
+                    .Where(i => i.movieName.ToLower().Contains(normalizedValue)) // Veritabanı sorgusunda da küçük harfe çevirin
+                    .Skip(page ?? 0)
+                    .Take(size ?? 10) // Varsayılan olarak bir sayfa boyutu belirleyin
+                    .Select(r => new MovieDto { Id = r.id, MovieName = r.movieName, CategoryId = r.categoryId, ImageUrl = r.imageUrl, Rate = r.rate, releaseDate = r.releaseDate, Description = r.description  })
                     .ToListAsync();
 
-                if (movies == null || movies.Count == 0)
-                {
-                    return NotFound(); // Eğer film bulunamazsa NotFound döndür
-                }
+                totalCount = await _moviecontext.Movies
+                   .Where(i => i.movieName.ToLower().Contains(normalizedValue)).CountAsync();
 
-                return Ok(movies); // Filmleri başarıyla bulursa OK (200) ve filmleri döndür
+
             }
-            catch (Exception ex)
+            else
             {
-                // Herhangi bir istisna durumunda buraya düşeriz
-                // Loglama yapılabilir, uygun bir hata mesajı gönderilebilir
-                return StatusCode(StatusCodes.Status500InternalServerError, "Veritabanından filmler alınırken bir hata oluştu.");
+                Movies = await _moviecontext.Movies
+                    .Skip(page ?? 0)
+                    .Take(size ?? 10) // Varsayılan olarak bir sayfa boyutu belirleyin
+                    .Select(r => new MovieDto { Id = r.id, MovieName = r.movieName, CategoryId = r.categoryId, ImageUrl = r.imageUrl, Rate = r.rate, releaseDate = r.releaseDate, Description = r.description })
+                    .ToListAsync();
+                totalCount = await _moviecontext.MovieActors.CountAsync();
             }
+
+
+
+            var result = new
+            {
+                TotalCount = totalCount,
+                Movies = Movies
+            };
+
+            return Ok(result);
+
+
         }
 
 
@@ -188,12 +200,31 @@ namespace imdbApi.Controllers
             }
 
             return Ok(new {message = "Film başarıyla güncelledi" });
-            
-
-
         }
-    
+
+        [HttpPost("MovieIds")]
+        public async Task<IActionResult> GetMovieIds([FromBody] List<int> ids)
+        {
+            if (ids == null || !ids.Any())
+            {
+                return BadRequest("ID listesi boş olamaz.");
+            }
+
+            // Veritabanında ID listesi ile eşleşen filmleri al
+            var movies = await _moviecontext.Movies
+                .Where(movie => ids.Contains(movie.id))
+                .ToListAsync();
+
+            if (movies == null || !movies.Any())
+            {
+                return NotFound("Belirtilen ID'lerle eşleşen film bulunamadı.");
+            }
+
+            return Ok(movies);
+        }
 
 
-}
+
+
+    }
 }
