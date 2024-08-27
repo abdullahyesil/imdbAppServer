@@ -1,6 +1,8 @@
 ﻿using imdbApi.DTO;
 using imdbApi.Model;
 using imdbApi.Model.Entity;
+using imdbApi.Services.Abrastract;
+using imdbApi.Services.Implementation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,10 +15,12 @@ namespace imdbApi.Controllers
     {
 
         readonly movieContext _movieContext;
+        readonly IFileService _fileService;
 
-        public ActorController(movieContext movieContext)
+        public ActorController(movieContext movieContext, IFileService fileService)
         {
             _movieContext = movieContext;
+            _fileService = fileService;
         }
 
         [HttpGet("getActors")]
@@ -63,11 +67,27 @@ namespace imdbApi.Controllers
 
 
         [HttpPost("addActor")]
-        public async Task<IActionResult> AddActor(ActorDto actorDto)
+        public async Task<IActionResult> AddActor([FromForm]ActorDto actorDto)
         {
+
             if (actorDto == null)
             {
                 return BadRequest("Actor data is null.");
+            }
+
+            if (actorDto.File != null)
+            {
+                var fileResult = _fileService.SaveImage(actorDto.File, 900, 1600);
+                if (fileResult.Item1 == 1 && !string.IsNullOrEmpty(fileResult.Item2))
+                {
+                    var request = HttpContext.Request;
+                    var baseUrl = $"{request.Scheme}://{request.Host}";
+            
+
+                    // Tam URL'yi oluşturuyoruz
+                    actorDto.imageUrl = Path.Combine(baseUrl, "res", fileResult.Item2).Replace("\\", "/");
+                 
+                }
             }
 
             // Aynı isimde bir aktörün olup olmadığını kontrol edin
@@ -81,7 +101,8 @@ namespace imdbApi.Controllers
 
             var actor = new Actors
             {
-                Name = actorDto.Name
+                Name = actorDto.Name,
+                imageUrl = actorDto.imageUrl,
             };
 
             try

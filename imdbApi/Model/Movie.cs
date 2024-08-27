@@ -1,4 +1,5 @@
 ﻿using imdbApi.Model.Entity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace imdbApi.Model
 {
@@ -8,11 +9,14 @@ namespace imdbApi.Model
         public string movieName { get; set; } = string.Empty;
         public string description { get; set; } = string.Empty;
         public DateTime releaseDate { get; set; }
-        public string imageUrl { get; set; } = string.Empty;
+        public string? imageUrl { get; set; } = string.Empty;
+        public string? carouselImage { get; set; }
         public double rate { get; set; }
         // Many-to-Many ilişkiyi yönetmek için MovieActors navigation property
         public List<MovieActor> MovieActors { get; set; } = new List<MovieActor>();
         public int categoryId { get; set; }
+        [NotMapped]
+        public IFormFile? ImageFile { get; set; }
             
     }
 }

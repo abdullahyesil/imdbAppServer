@@ -237,3 +237,4 @@ C:\Users\PC\Documents\GitHub\imdbAppServer\imdbApi\obj\Debug\net8.0\refint\imdbA
 C:\Users\PC\Documents\GitHub\imdbAppServer\imdbApi\obj\Debug\net8.0\imdbApi.pdb
 C:\Users\PC\Documents\GitHub\imdbAppServer\imdbApi\obj\Debug\net8.0\imdbApi.genruntimeconfig.cache
 C:\Users\PC\Documents\GitHub\imdbAppServer\imdbApi\obj\Debug\net8.0\ref\imdbApi.dll
+C:\Users\PC\Documents\GitHub\imdbAppServer\imdbApi\bin\Debug\net8.0\SixLabors.ImageSharp.dll

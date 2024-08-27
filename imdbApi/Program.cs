@@ -1,8 +1,11 @@
 using imdbApi.Model;
+using imdbApi.Services.Abrastract;
+using imdbApi.Services.Implementation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
@@ -17,7 +20,7 @@ builder.Services.AddDbContext<movieContext>(option => option.UseNpgsql(builder.C
 
 builder.Services.AddIdentity<appUser, appRole>().AddEntityFrameworkStores<movieContext>();
 
-
+builder.Services.AddTransient<IFileService, FileService>();
 
 //token
 builder.Services.AddAuthentication(x =>
@@ -55,6 +58,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
 
 });
+
 
 
 
@@ -106,12 +110,19 @@ builder.Services.AddSwaggerGen(option =>
 
 });
 var app = builder.Build();
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+           Path.Combine(builder.Environment.ContentRootPath, "Uploads")),
+    RequestPath = "/res"
+});
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 
 
 app.UseAuthentication(); // auth kullandýk

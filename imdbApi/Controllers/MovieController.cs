@@ -1,6 +1,7 @@
 ﻿using imdbApi.DTO;
 using imdbApi.Model;
 using imdbApi.Model.Entity;
+using imdbApi.Services.Abrastract;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -18,17 +19,19 @@ namespace imdbApi.Controllers
 
     {
         private readonly movieContext _moviecontext;
+        private readonly IFileService _fileService;
 
-        public MovieController(movieContext context)
+        public MovieController(movieContext context, IFileService fileService)
         {
             _moviecontext = context;
+            _fileService = fileService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> getMovies([FromQuery] int? page, int? size, string? value)
+        public async Task<IActionResult> getMovies([FromQuery] int? page, int? size, string? value, int? categoryId)
         {
 
-            var totalCount = 0;
+            int totalCount;
             List<MovieDto> Movies;
             if (!string.IsNullOrEmpty(value))
             {
@@ -36,24 +39,39 @@ namespace imdbApi.Controllers
 
                 Movies = await _moviecontext.Movies
                     .Where(i => i.movieName.ToLower().Contains(normalizedValue)) // Veritabanı sorgusunda da küçük harfe çevirin
-                    .Skip(page ?? 0)
-                    .Take(size ?? 10) // Varsayılan olarak bir sayfa boyutu belirleyin
-                    .Select(r => new MovieDto { Id = r.id, MovieName = r.movieName, CategoryId = r.categoryId, ImageUrl = r.imageUrl, Rate = r.rate, releaseDate = r.releaseDate, Description = r.description  })
-                    .ToListAsync();
-
-                totalCount = await _moviecontext.Movies
-                   .Where(i => i.movieName.ToLower().Contains(normalizedValue)).CountAsync();
-
-
-            }
-            else
-            {
-                Movies = await _moviecontext.Movies
-                    .Skip(page ?? 0)
+                    .Skip(page * size ?? 0)
                     .Take(size ?? 10) // Varsayılan olarak bir sayfa boyutu belirleyin
                     .Select(r => new MovieDto { Id = r.id, MovieName = r.movieName, CategoryId = r.categoryId, ImageUrl = r.imageUrl, Rate = r.rate, releaseDate = r.releaseDate, Description = r.description })
                     .ToListAsync();
-                totalCount = await _moviecontext.MovieActors.CountAsync();
+
+                totalCount = _moviecontext.Movies
+                   .Where(i => i.movieName.ToLower().Contains(normalizedValue)).Count();
+
+
+            }
+            else if (categoryId != null)
+            {
+
+                Movies = await _moviecontext.Movies
+                    .Where(i => i.categoryId == categoryId)
+                    .Skip(page * size ?? 0)
+                    .Take(size ?? 10) // Varsayılan olarak bir sayfa boyutu belirleyin
+                    .Select(r => new MovieDto { Id = r.id, MovieName = r.movieName, CategoryId = r.categoryId, ImageUrl = r.imageUrl, Rate = r.rate, releaseDate = r.releaseDate, Description = r.description })
+                    .ToListAsync();
+
+                totalCount = _moviecontext.Movies
+                   .Where(i => i.categoryId == categoryId).Count();
+
+            }
+
+            else
+            {
+                Movies = await _moviecontext.Movies
+                    .Skip(page * size ?? 0)
+                    .Take(size ?? 10) // Varsayılan olarak bir sayfa boyutu belirleyin
+                    .Select(r => new MovieDto { Id = r.id, MovieName = r.movieName, CategoryId = r.categoryId, ImageUrl = r.imageUrl, Rate = r.rate, releaseDate = r.releaseDate, Description = r.description })
+                    .ToListAsync();
+                totalCount = _moviecontext.Movies.Count();
             }
 
 
@@ -102,7 +120,8 @@ namespace imdbApi.Controllers
                 Actors = movie.MovieActors.Select(ma => new ActorDto
                 {
                     Id = ma.Actor.Id,
-                    Name = ma.Actor.Name
+                    Name = ma.Actor.Name,
+                    imageUrl= ma.Actor.imageUrl
                 }).ToList()
             };
 
@@ -111,10 +130,29 @@ namespace imdbApi.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> AddMovie(MovieDto model)
+        public async Task<IActionResult> AddMovie([FromForm]MovieDto model)
         {
             // releaseDate'nin Kind'ini UTC olarak ayarlayalım, saat bilgisini sıfırlayalım
             model.releaseDate = DateTime.SpecifyKind(model.releaseDate.Date, DateTimeKind.Utc);
+
+           
+
+            if (model.ImageFile != null)
+            {
+                var fileResult = _fileService.SaveImage(model.ImageFile, 2400, 1600);
+                Console.WriteLine($"SaveImage Result: {fileResult.Item1}, {fileResult.Item2}");
+
+                if (fileResult.Item1 == 1 && !string.IsNullOrEmpty(fileResult.Item2))
+                {
+                    var request = HttpContext.Request;
+                    var baseUrl = $"{request.Scheme}://{request.Host}";
+                    Console.WriteLine($"Base URL: {baseUrl}");
+
+                    // Tam URL'yi oluşturuyoruz
+                    model.ImageUrl = Path.Combine(baseUrl, "res", fileResult.Item2).Replace("\\", "/");
+                    Console.WriteLine($"Image URL: {model.ImageUrl}");
+                }
+            }
 
             // MovieDto'yu Movie entity'sine dönüştürelim
             var movieEntity = new Movie
@@ -122,22 +160,22 @@ namespace imdbApi.Controllers
                 movieName = model.MovieName,
                 description = model.Description,
                 releaseDate = model.releaseDate,
-                imageUrl = model.ImageUrl,
                 rate = model.Rate,
                 categoryId = model.CategoryId,
+                imageUrl = model.ImageUrl,
                 MovieActors = model.Actors.Select(ma => new MovieActor
                 {
-                    ActorId = ma.Id
+                    ActorId = ma.Id ?? 0
                     // Burada MovieId ayarlanmıyor çünkü EF tarafından otomatik olarak yapılır
                 }).ToList()
             };
 
+
             // Entity'i veritabanına ekleyelim
             _moviecontext.Movies.Add(movieEntity);
             await _moviecontext.SaveChangesAsync();
-
-            // Yeni eklenen film için oluşturulan id'yi almak için entity'den alıyoruz
             return CreatedAtAction(nameof(getMovies), new { id = movieEntity.id }, new { message = "Film başarıyla eklendi " });
+
         }
 
 
