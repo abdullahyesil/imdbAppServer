@@ -77,7 +77,7 @@ namespace imdbApi.Controllers
 
             if (actorDto.File != null)
             {
-                var fileResult = _fileService.SaveImage(actorDto.File, 900, 1600);
+                var fileResult = _fileService.SaveImage(actorDto.File, 1600, 900);
                 if (fileResult.Item1 == 1 && !string.IsNullOrEmpty(fileResult.Item2))
                 {
                     var request = HttpContext.Request;
@@ -96,7 +96,7 @@ namespace imdbApi.Controllers
 
             if (existingActor != null)
             {
-                return Conflict(new { message = "An actor with the same name already exists." });
+                return Conflict(new { message = "Zaten bu isimle bir oyuncu var." });
             }
 
             var actor = new Actors
@@ -113,7 +113,7 @@ namespace imdbApi.Controllers
             catch (DbUpdateException ex)
             {
                 // Hata yönetimi için loglama yapılabilir veya hata mesajı dönebilirsiniz
-                return StatusCode(500,new { message = "An error occurred while saving the actor. Please try again." });
+                return StatusCode(500,new { message = "Oyuncu kaydedilirken bir hata oluştu. Lütfen tekrar deneyin." });
             }
 
             // Eklenen aktörün ID'si ile birlikte yanıt döneriz
@@ -121,7 +121,7 @@ namespace imdbApi.Controllers
         }
 
         [HttpPut("updateActor")]
-        public async Task<IActionResult> UpdateActor([FromBody] ActorDto actorDto)
+        public async Task<IActionResult> UpdateActor([FromForm] ActorDto actorDto)
         {
             if (actorDto == null)
             {
@@ -134,6 +134,39 @@ namespace imdbApi.Controllers
                 return NotFound("Actor not found.");
             }
 
+            // Önceki resmin yolunu al
+            var existingImageUrl = actor.imageUrl;
+
+            if (actorDto.File != null)
+            {
+                // Yeni resmi kaydet
+                var fileResult = _fileService.SaveImage(actorDto.File, 1600, 900);
+                if (fileResult.Item1 == 1 && !string.IsNullOrEmpty(fileResult.Item2))
+                {
+                    var request = HttpContext.Request;
+                    var baseUrl = $"{request.Scheme}://{request.Host}";
+
+                    // Yeni resmi tam URL ile kaydet
+                    actor.imageUrl = Path.Combine(baseUrl, "res", fileResult.Item2).Replace("\\", "/");
+
+                    // Eski resmi sil
+                    if (!string.IsNullOrEmpty(existingImageUrl))
+                    {
+                        // Tam URL'den dosya adını çıkarıyoruz
+                        var oldImageFileName = Path.GetFileName(existingImageUrl);
+
+                        // Dosya adını silme metoduna gönderiyoruz
+                        _fileService.DeleteImage(oldImageFileName);
+
+                    }
+                }
+                else
+                {
+                    return BadRequest("Yeni resim yüklenemedi.");
+                }
+            }
+
+            // Aktörün diğer bilgilerini güncelle
             actor.Name = actorDto.Name;
 
             _movieContext.Actors.Update(actor);
@@ -143,27 +176,37 @@ namespace imdbApi.Controllers
         }
 
 
+
         [HttpDelete("delete/{id}")]
-        public async Task<IActionResult> deleteActor([FromRoute]int id)
+        public IActionResult deleteActor([FromRoute]int id)
         {
-            var actor = await _movieContext.Actors.FirstOrDefaultAsync(i=> i.Id == id);
+            var actor =  _movieContext.Actors.FirstOrDefault(i=> i.Id == id);
 
-            if (actor != null)
+            if (actor == null)
             {
-                 _movieContext.Actors.Remove(actor);
-                try
-                {
-                  _movieContext.SaveChanges();
-                }
-                catch (Exception)
-                {
-
-                    throw;
-                }
-
-                return Ok("Başarıyla silindi");
+                return NotFound("İd ile kullanıcı mevcut değil");
             }
-            return NotFound("İd ile kullanıcı mevcut değil");
+
+
+            _movieContext.Actors.Remove(actor);
+            try
+            {
+                _movieContext.SaveChanges();
+
+                var response = new ResponseMessage()
+                {
+                    isSucceed = true,
+                    Message = "Başarıyla silindi."
+                };
+                return Ok(response);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            
 
         }
 

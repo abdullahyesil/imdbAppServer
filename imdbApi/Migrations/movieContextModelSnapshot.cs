@@ -307,6 +307,10 @@ namespace imdbApi.Migrations
                     b.Property<DateTime>("releaseDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("trailer")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("id");
 
                     b.ToTable("Movies");
@@ -320,7 +324,8 @@ namespace imdbApi.Migrations
                             imageUrl = "https://i.imgur.com/MVLnB1j.jpg",
                             movieName = "Esaretin Bedeli",
                             rate = 4.7999999999999998,
-                            releaseDate = new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc)
+                            releaseDate = new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            trailer = "https://www.youtube.com/embed/g-6g2uEjF1s?si=nylvjTIQU3in_fmK"
                         },
                         new
                         {
@@ -330,7 +335,8 @@ namespace imdbApi.Migrations
                             imageUrl = "https://i.imgur.com/ISX6YEd.jpeg",
                             movieName = "Baba",
                             rate = 5.0,
-                            releaseDate = new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc)
+                            releaseDate = new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            trailer = "https://www.youtube.com/embed/g-6g2uEjF1s?si=nylvjTIQU3in_fmK"
                         },
                         new
                         {
@@ -340,7 +346,8 @@ namespace imdbApi.Migrations
                             imageUrl = "https://i.imgur.com/s96o1bI.jpeg",
                             movieName = "Kara Şövalye",
                             rate = 4.0,
-                            releaseDate = new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc)
+                            releaseDate = new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            trailer = "https://www.youtube.com/embed/g-6g2uEjF1s?si=nylvjTIQU3in_fmK"
                         },
                         new
                         {
@@ -350,7 +357,8 @@ namespace imdbApi.Migrations
                             imageUrl = "https://i.imgur.com/XVa7aaQ.jpeg",
                             movieName = "Yüzüklerin Efendisi: Kralın Dönüşü",
                             rate = 4.4000000000000004,
-                            releaseDate = new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc)
+                            releaseDate = new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            trailer = "https://www.youtube.com/embed/g-6g2uEjF1s?si=nylvjTIQU3in_fmK"
                         },
                         new
                         {
@@ -360,7 +368,8 @@ namespace imdbApi.Migrations
                             imageUrl = "https://i.imgur.com/WXEcXuC.jpeg",
                             movieName = "Schindlerin Listesi",
                             rate = 4.5,
-                            releaseDate = new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc)
+                            releaseDate = new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            trailer = "https://www.youtube.com/embed/g-6g2uEjF1s?si=nylvjTIQU3in_fmK"
                         });
                 });
 

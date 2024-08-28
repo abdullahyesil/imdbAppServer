@@ -6,7 +6,7 @@ namespace imdbApi.Model.Entity
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string imageUrl { get; set; }
+        public string? imageUrl { get; set; }
         [NotMapped]
         public IFormFile? File { get; set; }
         // Many-to-Many ilişkiyi yönetmek için MovieActors navigation property

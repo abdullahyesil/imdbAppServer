@@ -66,12 +66,13 @@ namespace imdbApi.Controllers
 
             else
             {
+                totalCount = _moviecontext.Movies.Count();
                 Movies = await _moviecontext.Movies
                     .Skip(page * size ?? 0)
                     .Take(size ?? 10) // Varsayılan olarak bir sayfa boyutu belirleyin
                     .Select(r => new MovieDto { Id = r.id, MovieName = r.movieName, CategoryId = r.categoryId, ImageUrl = r.imageUrl, Rate = r.rate, releaseDate = r.releaseDate, Description = r.description })
                     .ToListAsync();
-                totalCount = _moviecontext.Movies.Count();
+               
             }
 
 
@@ -116,6 +117,7 @@ namespace imdbApi.Controllers
                 releaseDate = movie.releaseDate,
                 ImageUrl = movie.imageUrl,
                 Rate = movie.rate,
+                Trailer = movie.trailer,
                 CategoryId = movie.categoryId,
                 Actors = movie.MovieActors.Select(ma => new ActorDto
                 {
@@ -140,19 +142,37 @@ namespace imdbApi.Controllers
             if (model.ImageFile != null)
             {
                 var fileResult = _fileService.SaveImage(model.ImageFile, 2400, 1600);
-                Console.WriteLine($"SaveImage Result: {fileResult.Item1}, {fileResult.Item2}");
+           
 
                 if (fileResult.Item1 == 1 && !string.IsNullOrEmpty(fileResult.Item2))
                 {
                     var request = HttpContext.Request;
                     var baseUrl = $"{request.Scheme}://{request.Host}";
-                    Console.WriteLine($"Base URL: {baseUrl}");
+                 
 
                     // Tam URL'yi oluşturuyoruz
                     model.ImageUrl = Path.Combine(baseUrl, "res", fileResult.Item2).Replace("\\", "/");
-                    Console.WriteLine($"Image URL: {model.ImageUrl}");
+                
                 }
             }
+            if (model.CarouselImageFile != null)
+            {
+                var fileResult = _fileService.SaveImage(model.CarouselImageFile, 831, 500);
+              
+
+                if (fileResult.Item1 == 1 && !string.IsNullOrEmpty(fileResult.Item2))
+                {
+                    var request = HttpContext.Request;
+                    var baseUrl = $"{request.Scheme}://{request.Host}";
+                    
+
+                    // Tam URL'yi oluşturuyoruz
+                    model.CarouselImage = Path.Combine(baseUrl, "res", fileResult.Item2).Replace("\\", "/");
+                    
+                }
+            }
+
+
 
             // MovieDto'yu Movie entity'sine dönüştürelim
             var movieEntity = new Movie
@@ -163,6 +183,8 @@ namespace imdbApi.Controllers
                 rate = model.Rate,
                 categoryId = model.CategoryId,
                 imageUrl = model.ImageUrl,
+                carouselImage = model.CarouselImage,
+                trailer = model.Trailer,
                 MovieActors = model.Actors.Select(ma => new MovieActor
                 {
                     ActorId = ma.Id ?? 0
@@ -209,35 +231,48 @@ namespace imdbApi.Controllers
         }
 
         [HttpPut("updateMovie/{id}")]
-        public async Task<IActionResult> updateMovie(Movie entity, int id)
+        public async Task<IActionResult> updateMovie([FromForm] MovieDto entity, int id)
         {
-
-            if (id != entity.id)
-            { 
-                return BadRequest("idler uyuşmuyor");
-            }
-            var movie = await _moviecontext.Movies.FirstOrDefaultAsync(i => i.id == id);
-            if (movie == null) {
-                return NotFound("Bulunamadı");
+            if (id != entity.Id)
+            {
+                return BadRequest("ID'ler uyuşmuyor");
             }
 
-            movie.movieName = entity.movieName;
-            movie.description = entity.description;
-            movie.imageUrl = entity.imageUrl;
+            var movie = await _moviecontext.Movies.Include(m => m.MovieActors).FirstOrDefaultAsync(i => i.id == id);
+            if (movie == null)
+            {
+                return NotFound("Film bulunamadı");
+            }
+
+            movie.movieName = entity.MovieName;
+            movie.description = entity.Description;
+            movie.imageUrl = entity.ImageUrl;
+            movie.trailer = entity.Trailer;
+            movie.carouselImage = entity.CarouselImage;
             movie.releaseDate = DateTime.SpecifyKind(entity.releaseDate.Date, DateTimeKind.Utc);
-            movie.rate = entity.rate;
-            movie.categoryId = entity.categoryId;
-            movie.MovieActors = entity.MovieActors;
+            movie.rate = entity.Rate;
+            movie.categoryId = entity.CategoryId;
+
+            // Mevcut aktörleri temizle
+            movie.MovieActors.Clear();
+
+            // Yeni aktörleri ekle
+            movie.MovieActors = entity.Actors.Select(ma => new MovieActor
+            {
+                ActorId = ma.Id ?? 0,
+                MovieId = movie.id  // Bu satırı ekledik, EF'nin bu ilişkiyi düzgün kurabilmesi için
+            }).ToList();
 
             try
             {
                 await _moviecontext.SaveChangesAsync();
             }
-            catch(Exception ex){
+            catch (Exception ex)
+            {
                 return BadRequest(ex.Message);
             }
 
-            return Ok(new {message = "Film başarıyla güncelledi" });
+            return Ok(new { message = "Film başarıyla güncellendi" });
         }
 
         [HttpPost("MovieIds")]

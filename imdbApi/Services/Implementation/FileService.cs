@@ -17,8 +17,8 @@ namespace imdbApi.Services.Implementation
             try
             {
 
-                var wwwPath = _env.WebRootPath;
-                var path = Path.Combine(wwwPath, imageFileName);
+                var wwwPath = _env.ContentRootPath;
+                var path = Path.Combine(wwwPath, "Uploads/", imageFileName);
                 if (System.IO.File.Exists(path))
                 {
 

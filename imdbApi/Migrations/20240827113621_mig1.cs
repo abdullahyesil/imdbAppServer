@@ -150,6 +150,7 @@ namespace imdbApi.Migrations
                     releaseDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     imageUrl = table.Column<string>(type: "text", nullable: true),
                     carouselImage = table.Column<string>(type: "text", nullable: true),
+                    trailer = table.Column<string>(type: "text", nullable: false),
                     rate = table.Column<double>(type: "double precision", nullable: false),
                     categoryId = table.Column<int>(type: "integer", nullable: false)
                 },
@@ -352,14 +353,14 @@ namespace imdbApi.Migrations
 
             migrationBuilder.InsertData(
                 table: "Movies",
-                columns: new[] { "id", "carouselImage", "categoryId", "description", "imageUrl", "movieName", "rate", "releaseDate" },
+                columns: new[] { "id", "carouselImage", "categoryId", "description", "imageUrl", "movieName", "rate", "releaseDate", "trailer" },
                 values: new object[,]
                 {
-                    { 1, null, 5, "Over the course of several years, two convicts form a friendship, seeking consolation and, eventually, redemption through basic compassion.", "https://i.imgur.com/MVLnB1j.jpg", "Esaretin Bedeli", 4.7999999999999998, new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc) },
-                    { 2, null, 1, "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.", "https://i.imgur.com/ISX6YEd.jpeg", "Baba", 5.0, new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc) },
-                    { 3, null, 2, "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.", "https://i.imgur.com/s96o1bI.jpeg", "Kara Şövalye", 4.0, new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc) },
-                    { 4, null, 4, "Gandalf and Aragorn lead the World of Men against Saurons army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.", "https://i.imgur.com/XVa7aaQ.jpeg", "Yüzüklerin Efendisi: Kralın Dönüşü", 4.4000000000000004, new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc) },
-                    { 5, null, 5, "In German - occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.", "https://i.imgur.com/WXEcXuC.jpeg", "Schindlerin Listesi", 4.5, new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc) }
+                    { 1, null, 5, "Over the course of several years, two convicts form a friendship, seeking consolation and, eventually, redemption through basic compassion.", "https://i.imgur.com/MVLnB1j.jpg", "Esaretin Bedeli", 4.7999999999999998, new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc), "https://www.youtube.com/embed/g-6g2uEjF1s?si=nylvjTIQU3in_fmK" },
+                    { 2, null, 1, "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.", "https://i.imgur.com/ISX6YEd.jpeg", "Baba", 5.0, new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc), "https://www.youtube.com/embed/g-6g2uEjF1s?si=nylvjTIQU3in_fmK" },
+                    { 3, null, 2, "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.", "https://i.imgur.com/s96o1bI.jpeg", "Kara Şövalye", 4.0, new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc), "https://www.youtube.com/embed/g-6g2uEjF1s?si=nylvjTIQU3in_fmK" },
+                    { 4, null, 4, "Gandalf and Aragorn lead the World of Men against Saurons army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.", "https://i.imgur.com/XVa7aaQ.jpeg", "Yüzüklerin Efendisi: Kralın Dönüşü", 4.4000000000000004, new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc), "https://www.youtube.com/embed/g-6g2uEjF1s?si=nylvjTIQU3in_fmK" },
+                    { 5, null, 5, "In German - occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.", "https://i.imgur.com/WXEcXuC.jpeg", "Schindlerin Listesi", 4.5, new DateTime(1999, 12, 4, 0, 0, 0, 0, DateTimeKind.Utc), "https://www.youtube.com/embed/g-6g2uEjF1s?si=nylvjTIQU3in_fmK" }
                 });
 
             migrationBuilder.InsertData(

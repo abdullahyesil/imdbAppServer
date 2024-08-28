@@ -1,5 +1,6 @@
 ﻿using imdbApi.DTO.SurveysDTO;
 using imdbApi.Model;
+using imdbApi.Model.Entity;
 using imdbApi.Model.Entity.Surveys;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -58,7 +59,11 @@ namespace imdbApi.Controllers
                 try
                 {
                     await _settingsContext.SaveChangesAsync();
-                    return Ok();
+                    var response= new ResponseMessage() { isSucceed = true ,
+                        Message="Başarılı bir şekilde güncellendi"     
+                    };
+
+                    return Ok(response);
                 }
                 catch (Exception err)
                 {
@@ -68,7 +73,8 @@ namespace imdbApi.Controllers
             }
 
 
-            else { return BadRequest("Geçersiz istek"); }
+            else { 
+                return BadRequest("Geçersiz istek"); }
 
         }
         [HttpGet("Home")]
@@ -219,7 +225,13 @@ namespace imdbApi.Controllers
                 try
                 {
                     await _settingsContext.SaveChangesAsync();
-                    return Ok(model);
+                    var response = new ResponseMessage()
+                    {
+                        isSucceed = true,
+                        Message = "Başarılı bir şekilde güncellendi"
+                    };
+
+                    return Ok(response);
                 }
                 catch (Exception)
                 {
